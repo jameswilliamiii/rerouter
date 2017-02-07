@@ -8,6 +8,7 @@ use Rack::Rewrite do
 
   REDIRECTS.each do |from, to|
     r301 %r{.*}, "http://#{to}$&", if: -> (env) { env['SERVER_NAME'] == from }
+    r302 %r{.*}, "http://#{to}$&", if: -> (env) { env['SERVER_NAME'] == from }, :method => :post
   end
   
 end
